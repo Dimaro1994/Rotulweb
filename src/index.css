@@ -1,0 +1,140 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  --accent-primary: #d9a35f;
+  --accent-secondary: #a85a3a;
+  --accent-soft: rgba(217, 163, 95, 0.16);
+  --accent-strong: rgba(168, 90, 58, 0.3);
+  --accent-text: #f2d19b;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+}
+
+body.pride-mode {
+  --accent-primary: #ff2f92;
+  --accent-secondary: #6a4cff;
+  --accent-soft: rgba(255, 47, 146, 0.18);
+  --accent-strong: rgba(106, 76, 255, 0.3);
+  --accent-text: #fff2a8;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background-image: url('/logo.png');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+body.pride-mode::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    linear-gradient(
+      135deg,
+      rgba(228, 3, 3, 0.22) 0%,
+      rgba(255, 140, 0, 0.18) 18%,
+      rgba(255, 237, 0, 0.14) 34%,
+      rgba(0, 128, 38, 0.16) 50%,
+      rgba(0, 77, 255, 0.16) 68%,
+      rgba(117, 7, 135, 0.2) 84%,
+      rgba(228, 3, 3, 0.18) 100%
+    );
+}
+
+body.pride-mode .navbar {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(228, 3, 3, 0.88) 0%,
+      rgba(255, 140, 0, 0.88) 16.66%,
+      rgba(255, 237, 0, 0.88) 33.33%,
+      rgba(0, 128, 38, 0.88) 50%,
+      rgba(0, 77, 255, 0.88) 66.66%,
+      rgba(117, 7, 135, 0.88) 83.33%,
+      rgba(228, 3, 3, 0.88) 100%
+    );
+}
+
+body.pride-mode .home-budget-button,
+body.pride-mode .contact-form button,
+body.pride-mode .help-assistant-button.primary,
+body.pride-mode .help-assistant-toggle-icon {
+  background: linear-gradient(90deg, #e40303, #ff8c00, #ffed00, #008026, #004dff, #750787);
+  color: #ffffff;
+}
+
+body.pride-mode .contact-panel,
+body.pride-mode .service-category,
+body.pride-mode .work-card,
+body.pride-mode .contact-container,
+body.pride-mode .help-assistant-panel,
+body.pride-mode .contact-map-frame {
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.06)),
+    linear-gradient(
+      120deg,
+      rgba(228, 3, 3, 0.12),
+      rgba(255, 140, 0, 0.1),
+      rgba(255, 237, 0, 0.08),
+      rgba(0, 128, 38, 0.08),
+      rgba(0, 77, 255, 0.1),
+      rgba(117, 7, 135, 0.12)
+    );
+}
+
+body.pride-mode .contact-icon-phone,
+body.pride-mode .contact-icon-email,
+body.pride-mode .contact-icon-social,
+body.pride-mode .service-category-icon {
+  background: linear-gradient(135deg, #e40303, #ff8c00, #ffed00, #008026, #004dff, #750787);
+  color: #ffffff;
+}
+
+body.pride-mode .animated-title,
+body.pride-mode .works-title,
+body.pride-mode .services-title,
+body.pride-mode .contact-container h2,
+body.pride-mode .home-highlights-title {
+  text-shadow:
+    0 0 18px rgba(255, 255, 255, 0.28),
+    0 0 34px rgba(255, 47, 146, 0.24);
+}
+
+body.pride-mode .home-budget-kicker,
+body.pride-mode .home-budget-title,
+body.pride-mode .work-card h3,
+body.pride-mode .service-category h3,
+body.pride-mode .contact-panel h3 {
+  color: #fff0b3;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+
+button:hover {
+  border-color: var(--accent-primary);
+}

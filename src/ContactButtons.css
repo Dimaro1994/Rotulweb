@@ -1,0 +1,127 @@
+.contact-buttons {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  z-index: 100;
+  align-items: flex-end;
+}
+
+.contact-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.contact-options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 12px;
+  border-radius: 16px;
+  background: rgba(7, 14, 30, 0.9);
+  border: 1px solid rgba(217, 163, 95, 0.25);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.28);
+  backdrop-filter: blur(10px);
+}
+
+.contact-option {
+  display: block;
+  min-width: 220px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  text-decoration: none;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.95rem;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.contact-option:hover {
+  background: rgba(217, 163, 95, 0.18);
+  transform: translateX(-3px);
+}
+
+.contact-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: none;
+  text-decoration: none;
+  color: #fff;
+  transition: all 0.3s ease;
+  font-size: 1.5rem;
+  position: relative;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.contact-btn:hover {
+  transform: scale(1.08);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+}
+
+.contact-btn.phone {
+  background: linear-gradient(135deg, #d9a35f 0%, #a85a3a 100%);
+}
+
+.contact-btn.email {
+  background: linear-gradient(135deg, #d27d4d 0%, #8a4f3d 100%);
+}
+
+.contact-btn .label {
+  position: absolute;
+  right: 75px;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 5px;
+  font-size: 0.85rem;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  font-family: 'Poppins', sans-serif;
+}
+
+.contact-btn:hover .label {
+  opacity: 1;
+}
+
+@media (max-width: 768px) {
+  .contact-buttons {
+    bottom: 20px;
+    right: 20px;
+  }
+
+  .contact-group {
+    flex-direction: column-reverse;
+    align-items: flex-end;
+  }
+
+  .contact-options {
+    width: min(260px, calc(100vw - 40px));
+  }
+
+  .contact-option {
+    min-width: 0;
+  }
+
+  .contact-btn {
+    width: 52px;
+    height: 52px;
+    font-size: 1.2rem;
+  }
+
+  .contact-btn .label {
+    right: 65px;
+    font-size: 0.75rem;
+  }
+}
