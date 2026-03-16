@@ -136,9 +136,7 @@ function App() {
       <WhatsAppButton />
       {currentPage === 'home' ? (
         <div className="home-screen">
-          <section className="home-welcome" aria-label="Bienvenida">
-            <h1 className="animated-title">Bienvenido a</h1>
-          </section>
+          <section className="home-welcome" aria-hidden="true" />
           <HelpAssistant
             onGoToServices={() => setCurrentPage('servicios')}
             onGoToContact={() => setCurrentPage('contacto')}
