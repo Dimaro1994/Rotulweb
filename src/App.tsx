@@ -1,9 +1,12 @@
 import { useState, useEffect } from 'react'
 import './App.css'
 import Navbar from './Navbar'
+import About from './About'
 import Services from './Services'
 import Works from './Works'
+import Testimonials from './Testimonials'
 import Contact from './Contact'
+import Footer from './Footer'
 import WhatsAppButton from './WhatsAppButton'
 import HelpAssistant from './HelpAssistant'
 
@@ -63,20 +66,34 @@ function App() {
   }, [isPrideDay])
 
   useEffect(() => {
-    const handleNavClick = (e: any) => {
-      const href = e.target.getAttribute('href')
-      if (href === '#servicios') {
-        e.preventDefault()
+    const handleNavClick = (event: MouseEvent) => {
+      const target = event.target as HTMLElement | null
+      const link = target?.closest('a[href^="#"]') as HTMLAnchorElement | null
+
+      if (!link) {
+        return
+      }
+
+      const href = link.getAttribute('href')
+
+      if (href === '#inicio') {
+        event.preventDefault()
+        setCurrentPage('home')
+      } else if (href === '#quienes-somos') {
+        event.preventDefault()
+        setCurrentPage('quienes-somos')
+      } else if (href === '#servicios') {
+        event.preventDefault()
         setCurrentPage('servicios')
       } else if (href === '#trabajos') {
-        e.preventDefault()
+        event.preventDefault()
         setCurrentPage('trabajos')
+      } else if (href === '#opiniones') {
+        event.preventDefault()
+        setCurrentPage('opiniones')
       } else if (href === '#contacto') {
-        e.preventDefault()
+        event.preventDefault()
         setCurrentPage('contacto')
-      } else if (href === '#inicio') {
-        e.preventDefault()
-        setCurrentPage('home')
       }
     }
 
@@ -85,8 +102,7 @@ function App() {
   }, [])
 
   useEffect(() => {
-    const isHomePage = currentPage === 'home'
-    document.body.classList.toggle('home-page', isHomePage)
+    document.body.classList.toggle('home-page', currentPage === 'home')
 
     return () => {
       document.body.classList.remove('home-page')
@@ -107,7 +123,7 @@ function App() {
 
   return (
     <>
-      <Navbar />
+      <Navbar currentPage={currentPage} />
       {showWorkScheduleNotice && (
         <div className="work-schedule-modal" role="dialog" aria-modal="true" aria-labelledby="work-schedule-title">
           <div className="work-schedule-modal-card">
@@ -135,41 +151,48 @@ function App() {
       )}
       <WhatsAppButton />
       {currentPage === 'home' ? (
-        <div className="home-screen">
-          <section className="home-welcome" aria-hidden="true" />
-          <HelpAssistant
-            onGoToServices={() => setCurrentPage('servicios')}
-            onGoToContact={() => setCurrentPage('contacto')}
-          />
-          <div className="home-bottom">
-            <section className="home-budget" aria-labelledby="home-budget-title">
+        <main className="page-content">
+          <div className="home-screen">
+            <section className="home-welcome" aria-hidden="true" />
+            <HelpAssistant
+              onGoToServices={() => setCurrentPage('servicios')}
+              onGoToContact={() => setCurrentPage('contacto')}
+            />
+            <div className="home-bottom">
+              <section className="home-budget" aria-labelledby="home-budget-title">
               <p className="home-budget-kicker">Presupuesto rapido</p>
               <h2 id="home-budget-title" className="home-budget-title">
-                Necesitas rotulacion para tu negocio?
+                Haz que tu negocio destaque desde el primer vistazo
               </h2>
-              <p className="home-budget-text">Solicita tu presupuesto sin compromiso.</p>
-              <a href="#contacto" className="home-budget-button">
-                Solicitar presupuesto
-              </a>
-            </section>
-            <section className="home-highlights" aria-labelledby="why-choose-rotulmon">
-              <h2 id="why-choose-rotulmon" className="home-highlights-title">Por que elegirnos</h2>
-              <p className="home-highlights-line">
-                <span>Disenos personalizados</span>
-                <span>Materiales profesionales</span>
-                <span>Instalacion de alta calidad</span>
-                <span>Asesoramiento para empresas</span>
-              </p>
-            </section>
+                <p className="home-budget-text">Solicita tu presupuesto sin compromiso.</p>
+                <a href="#contacto" className="home-budget-button">
+                  Solicitar presupuesto
+                </a>
+              </section>
+              <section className="home-highlights" aria-labelledby="why-choose-rotulmon">
+                <h2 id="why-choose-rotulmon" className="home-highlights-title">Por que elegirnos</h2>
+                <p className="home-highlights-line">
+                  <span>Disenos personalizados</span>
+                  <span>Materiales profesionales</span>
+                  <span>Instalacion de alta calidad</span>
+                  <span>Asesoramiento para empresas</span>
+                </p>
+              </section>
+            </div>
           </div>
-        </div>
+        </main>
+      ) : currentPage === 'quienes-somos' ? (
+          <About />
       ) : currentPage === 'servicios' ? (
-        <Services />
+          <Services />
       ) : currentPage === 'trabajos' ? (
-        <Works dailyPhrase={dailyPhrase} />
+          <Works dailyPhrase={dailyPhrase} />
+      ) : currentPage === 'opiniones' ? (
+          <Testimonials />
       ) : currentPage === 'contacto' ? (
-        <Contact />
+          <Contact />
       ) : null}
+      <Footer />
     </>
   )
 }

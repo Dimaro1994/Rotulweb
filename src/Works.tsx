@@ -94,6 +94,9 @@ function Works({ dailyPhrase }: WorksProps) {
 
       <div className="works-tagline works-tagline-bottom">
         <p>{dailyPhrase}</p>
+        <a href="#contacto" className="works-cta">
+          Pide tu presupuesto ahora
+        </a>
       </div>
     </section>
   )

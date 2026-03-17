@@ -36,13 +36,22 @@
 
 @media (max-width: 768px) {
   .whatsapp-button {
-    right: 16px;
-    bottom: 16px;
-    padding: 14px;
+    right: max(12px, env(safe-area-inset-right));
+    bottom: max(12px, env(safe-area-inset-bottom));
+    width: 56px;
+    height: 56px;
+    padding: 0;
+    justify-content: center;
+    box-shadow: 0 12px 24px rgba(18, 140, 74, 0.3);
   }
 
   .whatsapp-button-text {
     display: none;
+  }
+
+  .whatsapp-button-icon {
+    width: 24px;
+    height: 24px;
   }
 }
 

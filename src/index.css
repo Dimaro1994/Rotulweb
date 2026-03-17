@@ -13,6 +13,10 @@
   background-color: #242424;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body.pride-mode {
   --accent-primary: #ff2f92;
   --accent-secondary: #6a4cff;

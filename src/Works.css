@@ -179,6 +179,29 @@
   text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
 }
 
+.works-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+  padding: 12px 24px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #f3c969, #d4a83d);
+  color: #1f2937;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.28);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
+}
+
+.works-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.32);
+  filter: brightness(1.05);
+}
+
 @keyframes fadeInScale {
   from {
     opacity: 0;
@@ -210,7 +233,7 @@
 
 @media (max-width: 768px) {
   .works-container {
-    padding: 36px 12px 110px;
+    padding: 36px 12px 92px;
   }
 
   .works-hero {
@@ -223,15 +246,17 @@
   }
 
   .work-card {
+    min-height: unset;
     padding: 14px;
   }
 
   .work-image {
-    min-height: 220px;
+    min-height: 190px;
   }
 
   .work-image-gallery {
-    min-height: 220px;
+    min-height: 180px;
+    max-height: 220px;
   }
 
   .work-card-content {
@@ -239,7 +264,7 @@
   }
 
   .work-card h3 {
-    font-size: 1.2rem;
+    font-size: 1.24rem;
     text-align: center;
   }
 
@@ -261,6 +286,17 @@
 
   .works-tagline {
     padding: 0;
+  }
+
+  .works-tagline p {
+    font-size: 1.15rem;
+    line-height: 1.55;
+  }
+
+  .works-cta {
+    width: 100%;
+    max-width: 320px;
+    min-height: 48px;
   }
 }
 

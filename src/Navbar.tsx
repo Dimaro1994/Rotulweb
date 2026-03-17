@@ -1,21 +1,31 @@
 import './Navbar.css'
 
-function Navbar() {
+type NavbarProps = {
+  currentPage: string
+}
+
+function Navbar({ currentPage }: NavbarProps) {
   return (
     <nav className="navbar">
       <div className="navbar-container">
         <ul className="navbar-menu">
           <li className="navbar-item">
-            <a href="#inicio" className="navbar-link">Inicio</a>
+            <a href="#inicio" className={`navbar-link ${currentPage === 'home' ? 'active' : ''}`}>Inicio</a>
           </li>
           <li className="navbar-item">
-            <a href="#servicios" className="navbar-link">Servicios</a>
+            <a href="#quienes-somos" className={`navbar-link ${currentPage === 'quienes-somos' ? 'active' : ''}`}>Quienes somos</a>
           </li>
           <li className="navbar-item">
-            <a href="#trabajos" className="navbar-link">Trabajos</a>
+            <a href="#servicios" className={`navbar-link ${currentPage === 'servicios' ? 'active' : ''}`}>Servicios</a>
           </li>
           <li className="navbar-item">
-            <a href="#contacto" className="navbar-link">Contacto</a>
+            <a href="#trabajos" className={`navbar-link ${currentPage === 'trabajos' ? 'active' : ''}`}>Trabajos</a>
+          </li>
+          <li className="navbar-item">
+            <a href="#opiniones" className={`navbar-link ${currentPage === 'opiniones' ? 'active' : ''}`}>Opiniones</a>
+          </li>
+          <li className="navbar-item">
+            <a href="#contacto" className={`navbar-link ${currentPage === 'contacto' ? 'active' : ''}`}>Contacto</a>
           </li>
         </ul>
       </div>

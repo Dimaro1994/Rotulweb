@@ -124,20 +124,34 @@
 
 @media (max-width: 768px) {
   .services-container {
-    padding: 36px 12px 110px;
+    padding: 36px 12px 92px;
   }
 
   .services-title {
-    font-size: 2rem;
+    font-size: 2.05rem;
     margin-bottom: 30px;
   }
 
   .services-grid {
-    gap: 20px;
+    gap: 16px;
   }
 
   .service-category {
-    padding: 20px;
+    padding: 18px 16px;
+    border-radius: 18px;
+  }
+
+  .service-heading {
+    margin-bottom: 14px;
+  }
+
+  .service-category h3 {
+    font-size: 1.3rem;
+  }
+
+  .service-category li {
+    font-size: 1rem;
+    padding: 8px 0;
   }
 }
 
