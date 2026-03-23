@@ -1,8 +1,49 @@
-import { useState } from 'react'
+import { FormEvent, useState } from 'react'
 import './Contact.css'
+
+type ContactFormState = {
+  name: string
+  email: string
+  phone: string
+  message: string
+  privacy: boolean
+}
+
+const initialFormState: ContactFormState = {
+  name: '',
+  email: '',
+  phone: '',
+  message: '',
+  privacy: false,
+}
 
 function Contact() {
   const [showPhoneOptions, setShowPhoneOptions] = useState(false)
+  const [formData, setFormData] = useState<ContactFormState>(initialFormState)
+  const [formFeedback, setFormFeedback] = useState('')
+
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+
+    const emailBody = [
+      `Nombre: ${formData.name}`,
+      `Email: ${formData.email}`,
+      `Telefono: ${formData.phone || 'No indicado'}`,
+      '',
+      'Consulta:',
+      formData.message,
+    ].join('\n')
+
+    const mailtoUrl = `mailto:rotulmon@gmail.com?subject=${encodeURIComponent(
+      `Consulta web de ${formData.name}`,
+    )}&body=${encodeURIComponent(emailBody)}`
+
+    window.location.href = mailtoUrl
+    setFormFeedback(
+      'Hemos preparado tu mensaje en el correo. Si no se abre tu gestor de email, puedes escribirnos directamente a rotulmon@gmail.com.',
+    )
+    setFormData(initialFormState)
+  }
 
   return (
     <section className="contact-section">
@@ -19,12 +60,14 @@ function Contact() {
                 type="button"
                 className="contact-link contact-link-button"
                 onClick={() => setShowPhoneOptions((current) => !current)}
+                aria-expanded={showPhoneOptions}
+                aria-controls="contact-phone-options"
               >
                 Telefono
               </button>
             </div>
             {showPhoneOptions && (
-              <div className="contact-links contact-links-stack">
+              <div id="contact-phone-options" className="contact-links contact-links-stack">
                 <a href="tel:633833407" className="contact-link">
                   Llamar
                 </a>
@@ -63,17 +106,55 @@ function Contact() {
           </a>
         </div>
 
-        <form className="contact-form">
+        <form className="contact-form" onSubmit={handleSubmit}>
           <h3>Formulario</h3>
-          <input type="text" name="name" placeholder="Tu nombre" />
-          <input type="email" name="email" placeholder="Tu email" />
-          <input type="tel" name="phone" placeholder="Tu telefono" />
-          <textarea name="message" rows={5} placeholder="Cuentanos que necesitas" />
+          <input
+            type="text"
+            name="name"
+            placeholder="Tu nombre"
+            value={formData.name}
+            onChange={(event) => setFormData((current) => ({ ...current, name: event.target.value }))}
+            required
+          />
+          <input
+            type="email"
+            name="email"
+            placeholder="Tu email"
+            value={formData.email}
+            onChange={(event) => setFormData((current) => ({ ...current, email: event.target.value }))}
+            required
+          />
+          <input
+            type="tel"
+            name="phone"
+            placeholder="Tu telefono"
+            value={formData.phone}
+            onChange={(event) => setFormData((current) => ({ ...current, phone: event.target.value }))}
+          />
+          <textarea
+            name="message"
+            rows={5}
+            placeholder="Cuentanos que necesitas"
+            value={formData.message}
+            onChange={(event) => setFormData((current) => ({ ...current, message: event.target.value }))}
+            required
+          />
           <label className="contact-consent">
-            <input type="checkbox" name="privacy" required />
+            <input
+              type="checkbox"
+              name="privacy"
+              checked={formData.privacy}
+              onChange={(event) => setFormData((current) => ({ ...current, privacy: event.target.checked }))}
+              required
+            />
             <span>Acepto la politica de privacidad</span>
           </label>
           <button type="submit">Enviar consulta</button>
+          {formFeedback && (
+            <p className="contact-form-feedback" role="status">
+              {formFeedback}
+            </p>
+          )}
         </form>
 
         <section className="contact-map" aria-labelledby="contact-map-title">

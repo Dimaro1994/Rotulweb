@@ -33,7 +33,7 @@ function ContactButtons() {
           onClick={() => toggleMenu('phone')}
         >
           <span className="label">Telefono</span>
-          <span>📞</span>
+          <span aria-hidden="true">&#128222;</span>
         </button>
       </div>
 
@@ -52,7 +52,7 @@ function ContactButtons() {
           onClick={() => toggleMenu('email')}
         >
           <span className="label">Email</span>
-          <span>✉️</span>
+          <span aria-hidden="true">&#9993;</span>
         </button>
       </div>
     </div>
